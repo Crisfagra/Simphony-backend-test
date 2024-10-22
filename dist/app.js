@@ -8,6 +8,7 @@ require("reflect-metadata");
 const data_source_1 = require("./data-source");
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const swagger_jsdoc_1 = __importDefault(require("swagger-jsdoc"));
+const errorHandler_1 = require("./middlewares/errorHandler");
 const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
@@ -32,6 +33,7 @@ app.use('/api-docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.de
 app.use('/users', userRoutes_1.default);
 data_source_1.AppDataSource.initialize()
     .then(() => {
+    app.use(errorHandler_1.errorHandler);
     app.listen(3000, () => {
         console.log('Server running on http://localhost:3000');
     });

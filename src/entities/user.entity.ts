@@ -18,7 +18,7 @@ export class User {
   @Column()
   rol: string;
 
-  @ManyToMany(() => Service)
+  @ManyToMany(() => Service, (service) => service.users)
   @JoinTable()
   services: Service[];
 }

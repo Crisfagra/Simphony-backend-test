@@ -1,0 +1,270 @@
+openapi: 3.0.0
+info:
+  title: API de Usuarios y Servicios
+  description: Documentación para la API que gestiona usuarios, servicios y la asociación entre ellos.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Servidor local
+
+paths:
+  /users/register:
+    post:
+      summary: Registro de un nuevo usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                  example: "Juan Perez"
+                email:
+                  type: string
+                  example: "juan@example.com"
+                password:
+                  type: string
+                  example: "password123"
+                rol:
+                  type: string
+                  example: "user"
+      responses:
+        201:
+          description: Usuario registrado exitosamente
+        400:
+          description: Error en los datos de registro
+
+  /users/login:
+    post:
+      summary: Inicio de sesión de un usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: "juan@example.com"
+                password:
+                  type: string
+                  example: "password123"
+      responses:
+        200:
+          description: Inicio de sesión exitoso y retorno del token JWT
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+        401:
+          description: Credenciales inválidas
+
+  /users/{id}/services:
+    get:
+      summary: Obtener los servicios asociados a un usuario
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del usuario
+      responses:
+        200:
+          description: Lista de servicios asociados al usuario
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Service'
+        404:
+          description: Usuario no encontrado
+
+    post:
+      summary: Asociar servicios a un usuario
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                serviceIds:
+                  type: array
+                  items:
+                    type: integer
+                  example: [1, 2]
+      responses:
+        200:
+          description: Servicios asociados exitosamente al usuario
+        404:
+          description: Usuario o servicios no encontrados
+
+  /services:
+    post:
+      summary: Crear un nuevo servicio
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                  example: "Servicio de Desarrollo Web"
+                descripcion:
+                  type: string
+                  example: "Descripción del servicio de desarrollo web"
+                costo:
+                  type: number
+                  example: 500
+                categoria:
+                  type: string
+                  example: "Tecnología"
+      responses:
+        201:
+          description: Servicio creado exitosamente
+        400:
+          description: Error en los datos del servicio
+
+    get:
+      summary: Obtener todos los servicios
+      responses:
+        200:
+          description: Lista de todos los servicios
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Service'
+
+  /services/{id}:
+    get:
+      summary: Obtener un servicio por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del servicio
+      responses:
+        200:
+          description: Servicio encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+        404:
+          description: Servicio no encontrado
+
+    put:
+      summary: Actualizar un servicio existente
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del servicio
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                  example: "Servicio actualizado"
+                descripcion:
+                  type: string
+                  example: "Descripción actualizada"
+                costo:
+                  type: number
+                  example: 600
+                categoria:
+                  type: string
+                  example: "Consultoría"
+      responses:
+        200:
+          description: Servicio actualizado exitosamente
+        404:
+          description: Servicio no encontrado
+
+    delete:
+      summary: Eliminar un servicio por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del servicio
+      responses:
+        200:
+          description: Servicio eliminado exitosamente
+        404:
+          description: Servicio no encontrado
+
+components:
+  schemas:
+    Service:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        nombre:
+          type: string
+          example: "Servicio de Desarrollo Web"
+        descripcion:
+          type: string
+          example: "Descripción del servicio de desarrollo web"
+        costo:
+          type: number
+          example: 500
+        categoria:
+          type: string
+          example: "Tecnología"
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        nombre:
+          type: string
+          example: "Juan Perez"
+        email:
+          type: string
+          example: "juan@example.com"
+        rol:
+          type: string
+          example: "user"
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/Service'

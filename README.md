@@ -1,7 +1,8 @@
-# Awesome Project Build with TypeORM
+# Documentacion prueba tecnica Api de gestión de usuarios y servicios
 
-Steps to run this project:
+Proyecto desarrollado con NodeJs, ExpressJs y Typescript permite la gestion de usuarios y sericios, implementando buenas practicas y siguiendo los lineamientos proporcionados por la compañia.
 
-1. Run `npm i` command
-2. Setup database settings inside `data-source.ts` file
-3. Run `npm start` command
+# Funcionalidades
+
+Gestion de usuarios
+Gestios de servicios
