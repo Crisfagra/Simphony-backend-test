@@ -50,4 +50,4 @@ Proyecto desarrollado con NodeJs, ExpressJs y Typescript permite la gestion de u
 Realizar las peticiones a la API por medio de Postman o Curl a http://localhost:3000/ruta_a_testear
 
 # Documentacion
-Para acceder a la documentacion, se debe ir a [text](http://localhost:3000/api-docs)
+Para acceder a la documentacion, se debe ir a http://localhost:3000/api-docs
