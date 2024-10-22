@@ -4,9 +4,9 @@ Proyecto desarrollado con NodeJs, ExpressJs y Typescript permite la gestion de u
 
 # Funcionalidades
 
-**Gestion de usuarios**
-**Gestios de servicios**
-**Documentacion de la API**
+**Gestion de usuarios**: permite la creacion, consulta, modificacion de usuarios
+**Gestios de servicios**: permite la creacion, modificacion, consulta, borrado de servicios
+**Documentacion de la API**: Muestra toda la documentación de la API
 
 # Requisitos
 
@@ -18,8 +18,8 @@ Proyecto desarrollado con NodeJs, ExpressJs y Typescript permite la gestion de u
 
 1. Clonacion
     ```bash
-    git clone https://github.com/tu-usuario/tu-repositorio.git
-    cd tu-repositorio
+    git clone https://github.com/crisfagra/Simphony-backend-test
+    cd Simphony-backend-test
 
 2. Instalar dependencias
     ```bash
