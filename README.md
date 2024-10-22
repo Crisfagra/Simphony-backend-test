@@ -30,10 +30,10 @@ Proyecto desarrollado con NodeJs, ExpressJs y Typescript permite la gestion de u
    Crea un archivo .env en la raíz del proyecto con el siguiente contenido:
     DB_HOST=localhost
     DB_PORT=5432
-    DB_USERNAME=tu_usuario
-    DB_PASSWORD=tu_contraseña
-    DB_NAME=tu_base_de_datos
-    JWT_SECRET=tu_secreto_jwt
+    DB_USERNAME=usuario_base_de_datos
+    DB_PASSWORD=contraseña_base_de_datos
+    DB_NAME=nombre_base_de_datos
+    JWT_SECRET=jwt_secret
 
 4. Correr migraciones
    ```bash
