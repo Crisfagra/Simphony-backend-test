@@ -7,6 +7,16 @@ servers:
   - url: http://localhost:3000
     description: Servidor local
 
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  security:
+  - bearerAuth: []
+
 paths:
   /users/register:
     post:
@@ -69,6 +79,8 @@ paths:
   /users/{id}/services:
     get:
       summary: Obtener los servicios asociados a un usuario
+      security:
+      - bearerAuth: []
       parameters:
         - name: id
           in: path
@@ -90,6 +102,8 @@ paths:
 
     post:
       summary: Asociar servicios a un usuario
+      security:
+      - bearerAuth: []
       parameters:
         - name: id
           in: path
@@ -118,6 +132,8 @@ paths:
   /services:
     post:
       summary: Crear un nuevo servicio
+      security:
+      - bearerAuth: []
       requestBody:
         required: true
         content:
@@ -145,6 +161,8 @@ paths:
 
     get:
       summary: Obtener todos los servicios
+      security:
+      - bearerAuth: []
       responses:
         200:
           description: Lista de todos los servicios
@@ -158,6 +176,8 @@ paths:
   /services/{id}:
     get:
       summary: Obtener un servicio por ID
+      security:
+      - bearerAuth: []
       parameters:
         - name: id
           in: path
@@ -177,6 +197,8 @@ paths:
 
     put:
       summary: Actualizar un servicio existente
+      security:
+      - bearerAuth: []
       parameters:
         - name: id
           in: path
@@ -211,6 +233,8 @@ paths:
 
     delete:
       summary: Eliminar un servicio por ID
+      security:
+      - bearerAuth: []
       parameters:
         - name: id
           in: path
