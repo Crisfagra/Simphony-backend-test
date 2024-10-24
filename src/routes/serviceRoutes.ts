@@ -6,10 +6,10 @@ import { authenticate } from '../middlewares/auth';
 
 const router = Router();
 
-router.post('/services', authenticate, validateDto(CreateServiceDto), createService);
-router.get('/services', authenticate, getAllServices);
-router.get('/services/:id', authenticate, getServiceById);
-router.put('/services/:id', authenticate, validateDto(CreateServiceDto), updateService);
-router.delete('/services/:id', authenticate, deleteService);
+router.post('/', authenticate, validateDto(CreateServiceDto), createService);
+router.get('/', authenticate, getAllServices);
+router.get('/:id', authenticate, getServiceById);
+router.put('/:id', authenticate, validateDto(CreateServiceDto), updateService);
+router.delete('/:id', authenticate, deleteService);
 
 export default router;

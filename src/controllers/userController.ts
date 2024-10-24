@@ -4,6 +4,7 @@ import { User } from '../entities/user.entity';
 import { Service } from '../entities/service.entitiy';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { In } from 'typeorm';
 
 export const registerUser = async (req: Request, res: Response) => {
   const { nombre, email, password, rol } = req.body;
@@ -78,7 +79,7 @@ export const associateServicesToUser = async (req: Request, res: Response) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    const services = await serviceRepo.findByIds(serviceIds);
+    const services = await serviceRepo.findBy({ id: In(serviceIds) });
 
     if (services.length === 0) {
       return res.status(404).json({ message: 'No valid services found' });
@@ -104,7 +105,17 @@ export const getUserServices = async (req: Request, res: Response) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    res.status(200).json(user.services);
+    const userInfo = {
+      user: {
+        id: user.id,
+        nombre: user.nombre,
+        email: user.email,
+        rol: user.rol,
+      },
+      services: user.services,
+    }
+
+    res.status(200).json(userInfo);
   } catch (error) {
     res.status(400).json({ message: 'Error fetching user services', error: error.message });
   }

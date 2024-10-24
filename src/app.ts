@@ -7,32 +7,18 @@ import path from 'path';
 import { errorHandler } from './middlewares/errorHandler';
 
 import userRoutes from './routes/userRoutes'; 
+import serviceRoutes from './routes/serviceRoutes'; 
 
 const app = express();
 
 app.use(express.json());
 
-const swaggerOptions = {
-  swaggerDefinition: {
-    openapi: '3.0.0',
-    info: {
-      title: 'API de Servicios',
-      version: '1.0.0',
-      description: 'Documentación de API',
-    },
-    servers: [
-      {
-        url: 'http://localhost:3000',
-      },
-    ],
-  },
-  apis: ['./src/routes/*.ts'],
-};
-
 const swaggerDocument = YAML.load(path.join(__dirname, './docs/swagger.yaml'));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/users', userRoutes);
+app.use('/services', serviceRoutes);
+
 
 AppDataSource.initialize()
   .then(() => {

@@ -7,6 +7,10 @@ export const createService = async (req: Request, res: Response) => {
 
   try {
     const serviceRepo = AppDataSource.getRepository(Service);
+    const service = await serviceRepo.findOne({ where: { nombre: nombre } });
+    if (service) {
+      return res.status(401).json({ message: 'Service already register' });
+    }
     const newService = serviceRepo.create({
       nombre,
       descripcion,
