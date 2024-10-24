@@ -10,6 +10,10 @@ export const registerUser = async (req: Request, res: Response) => {
 
   try {
     const userRepo = AppDataSource.getRepository(User);
+    const user = await userRepo.findOne({ where: { email: email } });
+    if (user){
+      return res.status(401).json({ message: 'Email already register for another user' });
+    } 
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = userRepo.create({ nombre, email, password: hashedPassword, rol });
     await userRepo.save(newUser);
