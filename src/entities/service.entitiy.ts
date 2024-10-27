@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, Timestamp, DeleteDateColumn } from 'typeorm'
 import { User } from './user.entity'
 
 @Entity()
@@ -17,6 +17,9 @@ export class Service {
 
   @Column()
   categoria: string
+
+  @DeleteDateColumn()
+  deleteAt: Timestamp
 
   @ManyToMany(() => User, (user) => user.services)
   users: User[]

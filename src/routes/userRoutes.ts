@@ -5,6 +5,7 @@ import {
   getUserProfile,
   associateServicesToUser,
   getUserServices,
+  deleteUser,
 } from '../controllers/userController'
 import { authenticate } from '../middlewares/auth'
 import { validateDto } from '../middlewares/validate'
@@ -18,5 +19,6 @@ router.post('/login', loginUser)
 router.get('/profile', authenticate, getUserProfile)
 router.get('/:id/services', authenticate, getUserServices)
 router.post('/:id/services', authenticate, validateDto(AddServicesToUserDto), associateServicesToUser)
+router.delete('/:id', authenticate, deleteUser)
 
 export default router

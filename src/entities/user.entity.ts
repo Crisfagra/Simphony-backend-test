@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, Timestamp, DeleteDateColumn } from 'typeorm'
 import { Service } from './service.entitiy'
 
 @Entity()
@@ -17,6 +17,9 @@ export class User {
 
   @Column()
   rol: string
+
+  @DeleteDateColumn()
+  deleteAt: Timestamp
 
   @ManyToMany(() => Service, (service) => service.users)
   @JoinTable()

@@ -67,6 +67,25 @@ export const getUserProfile = async (req: Request, res: Response): Promise<any> 
   }
 }
 
+export const deleteUser = async (req: Request, res: Response): Promise<any> => {
+  const { id } = req.params
+
+  try {
+    const userRepo = AppDataSource.getRepository(User)
+    const user = await userRepo.findOne({ where: { id: Number(id) } })
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' })
+    }
+
+    await userRepo.softRemove(user)
+
+    res.status(200).json({ message: 'User deleted successfully' })
+  } catch (error) {
+    res.status(400).json({ message: 'Error deleting User', error: error.message })
+  }
+}
+
 export const associateServicesToUser = async (req: Request, res: Response): Promise<any> => {
   const { serviceIds } = req.body
   const userId = req.params.id

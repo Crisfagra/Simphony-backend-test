@@ -88,7 +88,7 @@ export const deleteService = async (req: Request, res: Response): Promise<any> =
       return res.status(404).json({ message: 'Service not found' })
     }
 
-    await serviceRepo.remove(service)
+    await serviceRepo.softRemove(service)
 
     res.status(200).json({ message: 'Service deleted successfully' })
   } catch (error) {
