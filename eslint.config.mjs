@@ -32,6 +32,7 @@ export default [
         "space-before-function-paren": "off",
         "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/no-explicit-any": "off",
         "no-useless-constructor": 0,
     },
 }]

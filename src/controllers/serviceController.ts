@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import { AppDataSource } from '../data-source'
 import { Service } from '../entities/service.entitiy'
 
-export const createService = async (req: Request, res: Response) => {
+export const createService = async (req: Request, res: Response): Promise<any> => {
   const { nombre, descripcion, costo, categoria } = req.body
 
   try {
@@ -25,7 +25,7 @@ export const createService = async (req: Request, res: Response) => {
   }
 }
 
-export const getAllServices = async (req: Request, res: Response) => {
+export const getAllServices = async (req: Request, res: Response): Promise<any> => {
   try {
     const serviceRepo = AppDataSource.getRepository(Service)
     const services = await serviceRepo.find()
@@ -35,7 +35,7 @@ export const getAllServices = async (req: Request, res: Response) => {
   }
 }
 
-export const getServiceById = async (req: Request, res: Response) => {
+export const getServiceById = async (req: Request, res: Response): Promise<any> => {
   const { id } = req.params
 
   try {
@@ -52,7 +52,7 @@ export const getServiceById = async (req: Request, res: Response) => {
   }
 }
 
-export const updateService = async (req: Request, res: Response) => {
+export const updateService = async (req: Request, res: Response): Promise<any> => {
   const { id } = req.params
   const { nombre, descripcion, costo, categoria } = req.body
 
@@ -77,7 +77,7 @@ export const updateService = async (req: Request, res: Response) => {
   }
 }
 
-export const deleteService = async (req: Request, res: Response) => {
+export const deleteService = async (req: Request, res: Response): Promise<any> => {
   const { id } = req.params
 
   try {

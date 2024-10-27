@@ -6,7 +6,7 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { In } from 'typeorm'
 
-export const registerUser = async (req: Request, res: Response) => {
+export const registerUser = async (req: Request, res: Response): Promise<any> => {
   const { nombre, email, password, rol } = req.body
 
   try {
@@ -25,7 +25,7 @@ export const registerUser = async (req: Request, res: Response) => {
   }
 }
 
-export const loginUser = async (req: Request, res: Response) => {
+export const loginUser = async (req: Request, res: Response): Promise<any> => {
   const { email, password } = req.body
 
   try {
@@ -46,7 +46,7 @@ export const loginUser = async (req: Request, res: Response) => {
   }
 }
 
-export const getUserProfile = async (req: Request, res: Response) => {
+export const getUserProfile = async (req: Request, res: Response): Promise<any> => {
   const userId = req.user && typeof req.user === 'object' ? req.user.userId : null
 
   if (!userId) {
@@ -67,7 +67,7 @@ export const getUserProfile = async (req: Request, res: Response) => {
   }
 }
 
-export const associateServicesToUser = async (req: Request, res: Response) => {
+export const associateServicesToUser = async (req: Request, res: Response): Promise<any> => {
   const { serviceIds } = req.body
   const userId = req.params.id
 
@@ -96,7 +96,7 @@ export const associateServicesToUser = async (req: Request, res: Response) => {
   }
 }
 
-export const getUserServices = async (req: Request, res: Response) => {
+export const getUserServices = async (req: Request, res: Response): Promise<any> => {
   const userId = req.params.id
 
   try {
