@@ -2,6 +2,5 @@ dist/
 node_modules/
 coverage/
 src/docs/
-src/routes/
 package-lock.json
 tsconfig.json
