@@ -13,7 +13,7 @@ import { AddServicesToUserDto } from '../dto/userServiceDto'
 
 const router = Router()
 
-router.post('/register', validateDto(CreateUserDto), registerUser)
+router.post('/register', authenticate, validateDto(CreateUserDto), registerUser)
 router.post('/login', loginUser)
 router.get('/profile', authenticate, getUserProfile)
 router.get('/:id/services', authenticate, getUserServices)

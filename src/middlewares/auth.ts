@@ -13,7 +13,6 @@ export const authenticate = (req: Request, res: Response, next: NextFunction) =>
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'jwt_secret')
     req.user = decoded
     next()
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (err) {
     return res.status(403).json({ message: 'Invalid token' })
   }

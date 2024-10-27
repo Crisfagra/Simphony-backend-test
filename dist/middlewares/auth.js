@@ -12,7 +12,7 @@ const authenticate = (req, res, next) => {
         return res.status(401).json({ message: 'Access denied, no token provided' });
     }
     try {
-        const decoded = jsonwebtoken_1.default.verify(token, process.env.JWT_SECRET || 'your_jwt_secret');
+        const decoded = jsonwebtoken_1.default.verify(token, process.env.JWT_SECRET || 'jwt_secret');
         req.user = decoded;
         next();
     }

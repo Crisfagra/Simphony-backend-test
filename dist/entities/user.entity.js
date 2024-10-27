@@ -36,7 +36,7 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "rol", void 0);
 __decorate([
-    (0, typeorm_1.ManyToMany)(() => service_entitiy_1.Service),
+    (0, typeorm_1.ManyToMany)(() => service_entitiy_1.Service, (service) => service.users),
     (0, typeorm_1.JoinTable)(),
     __metadata("design:type", Array)
 ], User.prototype, "services", void 0);

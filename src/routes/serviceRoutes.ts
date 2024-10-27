@@ -11,7 +11,6 @@ import { CreateServiceDto } from '../dto/serviceDto'
 import { authenticate } from '../middlewares/auth'
 
 const router = Router()
-
 router.post('/', authenticate, validateDto(CreateServiceDto), createService)
 router.get('/', authenticate, getAllServices)
 router.get('/:id', authenticate, getServiceById)
