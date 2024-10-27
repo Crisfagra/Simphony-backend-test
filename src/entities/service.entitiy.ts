@@ -1,23 +1,23 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from 'typeorm';
-import { User } from './user.entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from 'typeorm'
+import { User } from './user.entity'
 
 @Entity()
 export class Service {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: number
 
   @Column()
-  nombre: string;
+  nombre: string
 
   @Column()
-  descripcion: string;
+  descripcion: string
 
   @Column('float')
-  costo: number;
+  costo: number
 
   @Column()
-  categoria: string;
+  categoria: string
 
   @ManyToMany(() => User, (user) => user.services)
-  users: User[];
+  users: User[]
 }

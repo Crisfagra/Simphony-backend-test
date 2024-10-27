@@ -6,6 +6,9 @@
     "build": "rm -rf dist && npm run build-ts",
     "build-ts": "tsc",
     "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
+    "prettier": "prettier ./node_modules/prettier/bin-prettier.js --write src/.",
+    "lint": "eslint src/**/*.ts --quiet && prettier --check src/**/*.ts && prettier --check '**/*.{yml,yaml}'",
+    "fix-lint": "eslint src/**/*.ts --quiet --fix && npm run prettier",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli",
     "migration:generate": "npm run typeorm -- migration:generate ./src/database/migrations/CreateUserAndServiceTables -d ./src/data-source.ts ",
     "migration:run": "npm run typeorm -- migration:run -d ./src/data-source.ts",
@@ -49,7 +52,8 @@
     "prettier": "^3.3.3",
     "standard": "^17.1.2",
     "ts-node": "^10.9.2",
-    "tsconfig-paths": "^4.2.0"
+    "tsconfig-paths": "^4.2.0",
+    "typescript-eslint": "^8.11.0"
   },
   "eslintConfig": {
     "env": {

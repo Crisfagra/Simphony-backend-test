@@ -17,15 +17,22 @@ Proyecto desarrollado con NodeJs, ExpressJs y Typescript permite la gestion de u
 # Intalacion
 
 1. Clonacion
-    ```bash
-    git clone https://github.com/crisfagra/Simphony-backend-test
-    cd Simphony-backend-test
+
+   ```bash
+   git clone https://github.com/crisfagra/Simphony-backend-test
+   cd Simphony-backend-test
+
+   ```
 
 2. Instalar dependencias
-    ```bash
-    npm install
+
+   ```bash
+   npm install
+
+   ```
 
 3. Configuracion variables de entorno
+
    ```bash
    Crea un archivo .env en la raíz del proyecto con el siguiente contenido:
     DB_HOST=localhost
@@ -35,19 +42,25 @@ Proyecto desarrollado con NodeJs, ExpressJs y Typescript permite la gestion de u
     DB_NAME=nombre_base_de_datos
     JWT_SECRET=jwt_secret
 
+   ```
+
 4. Correr migraciones
    ```bash
    npm run migration:run
+   ```
 5. Correr seeds
    ```bash
    npm run seed
+   ```
 6. Iniciar el servidor
    ```bash
    npm run dev
+   ```
 
 # Funcionamiento
 
 Realizar las peticiones a la API por medio de Postman o Curl a http://localhost:3000/ruta_a_testear
 
 # Documentacion
+
 Para acceder a la documentacion, se debe ir a http://localhost:3000/api-docs

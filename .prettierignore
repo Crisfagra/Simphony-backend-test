@@ -1,0 +1,6 @@
+dist/
+node_modules/
+coverage/
+src/docs/
+package-lock.json
+tsconfig.json

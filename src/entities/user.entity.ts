@@ -1,24 +1,24 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
-import { Service } from './service.entitiy';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm'
+import { Service } from './service.entitiy'
 
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: number
 
   @Column()
-  nombre: string;
+  nombre: string
 
   @Column()
-  email: string;
+  email: string
 
   @Column()
-  password: string;
+  password: string
 
   @Column()
-  rol: string;
+  rol: string
 
   @ManyToMany(() => Service, (service) => service.users)
   @JoinTable()
-  services: Service[];
+  services: Service[]
 }
